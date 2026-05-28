@@ -3,55 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hanime 選單</title>
+    <title>Hanime 選單測試</title>
     <style>
-        body {background:#1a0033; color:#fff; font-family:sans-serif; margin:0; padding:15px;}
+        body {background:#1a0033; color:white; font-family:sans-serif; padding:15px;}
         h1 {text-align:center; color:#ff4da6;}
-        .item {padding:15px; background:rgba(255,255,255,0.1); margin:8px 0; border-radius:12px; display:flex; align-items:center;}
-        input[type=checkbox] {width:28px; height:28px; margin-right:15px;}
+        .item {padding:15px; background:rgba(255,255,255,0.1); margin:10px 0; border-radius:10px;}
         button {width:100%; padding:18px; margin:10px 0; border:none; border-radius:12px; font-size:18px;}
     </style>
 </head>
 <body>
-    <h1>Hanime 影片選單 (128部)</h1>
+    <h1>Hanime 選單測試版</h1>
     
     <button onclick="openSelected()">🚀 開啟選取的影片</button>
-    <button onclick="copySelected()">📋 複製選取連結</button>
-    <button onclick="clearAll()">❌ 清除勾選</button>
+    <button onclick="copySelected()">📋 複製連結</button>
 
     <div id="list"></div>
 
     <script>
-        const urls = {1:"https://hanime1.me/watch?v=406030",2:"https://hanime1.me/watch?v=22360",3:"https://hanime1.me/watch?v=39305",5:"https://hanime1.me/watch?v=404980",15:"https://hanime1.me/watch?v=100005",16:"https://hanime1.me/watch?v=405846",27:"https://hanime1.me/watch?v=405932",81:"https://hanime1.me/watch?v=39444",87:"https://hanime1.me/watch?v=406355",103:"https://hanime1.me/watch?v=114486",104:"https://hanime1.me/watch?v=154607",116:"https://hanime1.me/watch?v=114397",/*更多請告訴我*/};
-        const titles = {1:"春羽しか VT 3D",2:"回到童年",3:"異世界色色技能",5:"肛門狂熱...",15:"3DCG酪梨",16:"戀愛始於辣妹的命運",27:"御宅的我與極品校花...",81:"公園男人末路",87:"梅麻呂3D",103:"高質量 雷神 丘丘人",104:"高質量 胡桃 丘丘人",116:"布洛妮娅&可可利亚"};
+        const items = [
+            {n:1, t:"春羽しか VT 3D", u:"https://hanime1.me/watch?v=406030"},
+            {n:2, t:"回到童年", u:"https://hanime1.me/watch?v=22360"},
+            {n:5, t:"肛門狂熱宅男...", u:"https://hanime1.me/watch?v=404980"},
+            {n:15, t:"3DCG酪梨", u:"https://hanime1.me/watch?v=100005"},
+            {n:27, t:"御宅的我與極品校花...", u:"https://hanime1.me/watch?v=405932"}
+        ];
 
-        function render() {
-            let html = '';
-            for (let i = 1; i <= 128; i++) {
-                if (titles[i]) {
-                    html += `<div class="item"><input type="checkbox" value="${i}"><label>${i}. ${titles[i]}</label></div>`;
-                }
-            }
-            document.getElementById('list').innerHTML = html;
-        }
+        let html = '';
+        items.forEach(item => {
+            html += `<div class="item"><input type="checkbox" value="${item.n}"> ${item.n}. ${item.t}</div>`;
+        });
+        document.getElementById('list').innerHTML = html;
 
         function openSelected() {
             document.querySelectorAll('input:checked').forEach((cb,i) => {
-                setTimeout(() => window.open(urls[cb.value], '_blank'), i*600);
+                const id = parseInt(cb.value);
+                const found = items.find(x => x.n === id);
+                if (found) setTimeout(() => window.open(found.u, '_blank'), i*500);
             });
         }
 
         function copySelected() {
             let links = [];
-            document.querySelectorAll('input:checked').forEach(cb => links.push(urls[cb.value]));
-            if (links.length) navigator.clipboard.writeText(links.join('\n')).then(() => alert('已複製'));
+            document.querySelectorAll('input:checked').forEach(cb => {
+                const id = parseInt(cb.value);
+                const found = items.find(x => x.n === id);
+                if (found) links.push(found.u);
+            });
+            if (links.length > 0) {
+                navigator.clipboard.writeText(links.join('\n'));
+                alert('已複製 ' + links.length + ' 個連結');
+            }
         }
-
-        function clearAll() {
-            document.querySelectorAll('input[type="checkbox"]').forEach(c => c.checked = false);
-        }
-
-        render();
     </script>
 </body>
 </html>
