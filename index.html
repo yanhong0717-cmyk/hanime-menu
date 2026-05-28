@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hanime 影片選單</title>
+    <title>Hanime 影片選單 (128部)</title>
     <style>
         body {background: linear-gradient(135deg, #1a0033, #330033); color: #fff; font-family: system-ui; margin: 0; padding: 15px;}
         h1 {text-align: center; color: #ff4da6; margin: 20px 0;}
@@ -25,8 +25,94 @@
     <div id="list"></div>
 
     <script>
-        const urls = {1:"https://hanime1.me/watch?v=406030",2:"https://hanime1.me/watch?v=22360",3:"https://hanime1.me/watch?v=39305",5:"https://hanime1.me/watch?v=404980",15:"https://hanime1.me/watch?v=100005",16:"https://hanime1.me/watch?v=405846",27:"https://hanime1.me/watch?v=405932",81:"https://hanime1.me/watch?v=39444",87:"https://hanime1.me/watch?v=406355",103:"https://hanime1.me/watch?v=114486",104:"https://hanime1.me/watch?v=154607",116:"https://hanime1.me/watch?v=114397",/*... 完整128部請告訴我我再補 */};
-        const titles = {1:"春羽しか VT 3D",2:"回到童年",3:"異世界色色技能",5:"肛門狂熱宅男與超級愛肛門自慰的大小姐",15:"3DCG酪梨",16:"戀愛始於辣妹的命運",27:"御宅的我與極品校花的交往之路",81:"公園男人末路",87:"梅麻呂3D",103:"高質量 雷神 丘丘人",104:"高質量 胡桃 丘丘人",116:"布洛妮娅&可可利亚"};
+        const urls = {
+            1:"https://hanime1.me/watch?v=406030",2:"https://hanime1.me/watch?v=22360",3:"https://hanime1.me/watch?v=39305",
+            4:"https://hanime1.me/watch?v=105285",5:"https://hanime1.me/watch?v=404980",6:"https://hanime1.me/watch?v=115143",
+            7:"https://hanime1.me/watch?v=38567",8:"https://hanime1.me/watch?v=102371",9:"https://hanime1.me/watch?v=105524",
+            10:"https://hanime1.me/watch?v=37220",11:"https://hanime1.me/watch?v=99792",12:"https://hanime1.me/watch?v=39857",
+            13:"https://hanime1.me/watch?v=6825",14:"https://hanime1.me/watch?v=12884",15:"https://hanime1.me/watch?v=100005",
+            16:"https://hanime1.me/watch?v=405846",17:"https://hanime1.me/watch?v=12660",18:"https://hanime1.me/watch?v=404917",
+            19:"https://hanime1.me/watch?v=22307",20:"https://hanime1.me/watch?v=12241",21:"https://hanime1.me/watch?v=22727",
+            22:"https://hanime1.me/watch?v=12431",23:"https://hanime1.me/watch?v=115142",24:"https://hanime1.me/watch?v=115139",
+            25:"https://hanime1.me/watch?v=13326",26:"https://hanime1.me/watch?v=25782",27:"https://hanime1.me/watch?v=405932",
+            28:"https://hanime1.me/watch?v=405852",29:"https://hanime1.me/watch?v=115129",30:"https://hanime1.me/watch?v=157872",
+            31:"https://hanime1.me/watch?v=12255",32:"https://hanime1.me/watch?v=14054",33:"https://hanime1.me/watch?v=38203",
+            34:"https://hanime1.me/watch?v=96551",35:"https://hanime1.me/watch?v=143652",36:"https://hanime1.me/watch?v=13545",
+            37:"https://hanime1.me/watch?v=13563",38:"https://hanime1.me/watch?v=13501",39:"https://hanime1.me/watch?v=12392",
+            40:"https://hanime1.me/watch?v=405850",41:"https://hanime1.me/watch?v=12781",42:"https://hanime1.me/watch?v=13777",
+            43:"https://hanime1.me/watch?v=38093",44:"https://hanime1.me/watch?v=39858",45:"https://hanime1.me/watch?v=21527",
+            46:"https://hanime1.me/watch?v=23491",47:"https://hanime1.me/watch?v=13820",48:"https://hanime1.me/watch?v=38540",
+            49:"https://hanime1.me/watch?v=91012",50:"https://hanime1.me/watch?v=23483",51:"https://hanime1.me/watch?v=25231",
+            52:"https://hanime1.me/watch?v=22841",53:"https://hanime1.me/watch?v=13674",54:"https://hanime1.me/watch?v=22302",
+            55:"https://hanime1.me/watch?v=27434",56:"https://hanime1.me/watch?v=38453",57:"https://hanime1.me/watch?v=12677",
+            58:"https://hanime1.me/watch?v=13080",59:"https://hanime1.me/watch?v=23599",60:"https://hanime1.me/watch?v=96545",
+            61:"https://hanime1.me/watch?v=22872",62:"https://hanime1.me/watch?v=22473",63:"https://hanime1.me/watch?v=39538",
+            64:"https://hanime1.me/watch?v=13076",65:"https://hanime1.me/watch?v=13492",66:"https://hanime1.me/watch?v=39750",
+            67:"https://hanime1.me/watch?v=12230",68:"https://hanime1.me/watch?v=14297",69:"https://hanime1.me/watch?v=38675",
+            70:"https://hanime1.me/watch?v=39806",71:"https://hanime1.me/watch?v=23114",72:"https://hanime1.me/watch?v=20903",
+            73:"https://hanime1.me/watch?v=39115",74:"https://hanime1.me/watch?v=13259",75:"https://hanime1.me/watch?v=13575",
+            76:"https://hanime1.me/watch?v=22643",77:"https://hanime1.me/watch?v=12495",78:"https://hanime1.me/watch?v=23329",
+            79:"https://hanime1.me/watch?v=14345",80:"https://hanime1.me/watch?v=37757",81:"https://hanime1.me/watch?v=39444",
+            82:"https://hanime1.me/watch?v=110267",83:"https://hanime1.me/watch?v=114396",84:"https://hanime1.me/watch?v=91098",
+            85:"https://hanime1.me/watch?v=37771",86:"https://hanime1.me/watch?v=84028",87:"https://hanime1.me/watch?v=406355",
+            88:"https://hanime1.me/watch?v=143523",89:"https://hanime1.me/watch?v=103978",90:"https://hanime1.me/watch?v=105405",
+            91:"https://hanime1.me/watch?v=405504",92:"https://hanime1.me/watch?v=104221",93:"https://hanime1.me/watch?v=105825",
+            94:"https://hanime1.me/watch?v=39662",95:"https://hanime1.me/watch?v=113998",96:"https://hanime1.me/watch?v=118810",
+            97:"https://hanime1.me/watch?v=158042",98:"https://hanime1.me/watch?v=39773",99:"https://hanime1.me/watch?v=37772",
+            100:"https://hanime1.me/watch?v=166772",101:"https://hanime1.me/watch?v=95895",102:"https://hanime1.me/watch?v=154615",
+            103:"https://hanime1.me/watch?v=114486",104:"https://hanime1.me/watch?v=154607",105:"https://hanime1.me/watch?v=405194",
+            106:"https://hanime1.me/watch?v=27587",107:"https://hanime1.me/watch?v=103751",108:"https://hanime1.me/watch?v=404751",
+            109:"https://hanime1.me/watch?v=405001",110:"https://hanime1.me/watch?v=85756",111:"https://hanime1.me/watch?v=17550",
+            112:"https://hanime1.me/watch?v=38923",113:"https://hanime1.me/watch?v=404710",114:"https://hanime1.me/watch?v=143579",
+            115:"https://hanime1.me/watch?v=104155",116:"https://hanime1.me/watch?v=114397",117:"https://hanime1.me/watch?v=418",
+            118:"https://hanime1.me/watch?v=97063",119:"https://hanime1.me/watch?v=114390",120:"https://hanime1.me/watch?v=406389",
+            121:"https://hanime1.me/watch?v=166397",122:"https://hanime1.me/watch?v=98822",123:"https://hanime1.me/watch?v=402567",
+            124:"https://hanime1.me/watch?v=37633",125:"https://hanime1.me/watch?v=37633",126:"https://hanime1.me/watch?v=37699",
+            127:"https://hanime1.me/watch?v=39821",128:"https://hanime1.me/watch?v=406391"
+        };
+
+        const titles = {
+            1:"春羽しか VT 3D",2:"回到童年",3:"異世界色色技能",4:"風紀委員風俗活動",
+            5:"肛門狂熱宅男與超級愛肛門自慰的大小姐",6:"聖痕的亞莉亞",7:"巨乳女戰士・土下座催眠",
+            8:"明明說過要用套套",9:"我的理想的異世界生活",10:"今泉家似乎變成辣妹的聚會所了",
+            11:"泡在我家的辣妹同意讓我使用她的小穴",12:"這份戀情請你察覺",13:"歡迎來到！浪蕩妖精之林",
+            14:"異世界後宮物語",15:"3DCG酪梨",16:"戀愛始於辣妹的命運",17:"看穿悶騷義母姐妹的本質性愛三味",
+            18:"L’amour fou de l’automate",19:"危機 復仇闇黑網站",20:"向著小小的花蕾的深處",21:"觸手與女巫",
+            22:"公主Love Life!",23:"色色的義姐系列",24:"蕾卡乃華麗且我的女王",25:"回歸自然的暑假",
+            26:"田徑部女子是我的真人飛機杯",27:"御宅的我與極品校花的交往之路",28:"還得是人妻",
+            29:"輕浮 雌性 日常",30:"聖寶晶華聖劍",31:"義姐是不良媽媽授乳中",32:"不可以的事情",
+            33:"好色上班族",34:"驅魔少女夏洛特",35:"強勢逆推!爆乳辣妹深吻援交!",36:"催眠教室",
+            37:"深陷口交的嘴唇",38:"綠瞳 來自姐姐的關愛",39:"莉莉安娜小姐和安妮特小姐系列",
+            40:"痴魅悶凌 調教",41:"發情開關 控制女生發情",42:"女兒損壞的心",
+            43:"秘密的基地 為了讓男主不頹廢繼續攝影",44:"傲嬌好色",45:"夜襲懷孕七人眾",
+            46:"箱入少女",47:"冰堂伊吹 完美伊吹會長是拘束抖M的理由",48:"後宮狂熱",
+            49:"學生妹淫亂的時期",50:"絕對遵守 強制造人許可證",51:"女武神調教 精液瓶的戰鬥少女10姊妹",
+            52:"鋼鐵的魔女安妮洛茲",53:"巨乳人妻女教師催眠",54:"扶他部",
+            55:"我家弟弟肉棒超粗壯的 要不要來看看",56:"同級生remake",57:"學園痴女姐姐Maxheart",
+            58:"巨乳幻想",59:"運動服性癖",60:"好喜歡好喜歡最喜歡做愛的同班女同學",
+            61:"少女×少女×少女",62:"凌辱家庭餐館調教菜單",63:"母乳醬想要噴出來",
+            64:"學園中暫停時間",65:"巨乳令媛MC學園",66:"產子島 每週7天都可生產的雌性們",
+            67:"愛聖天使拉普梅亞莉 惡性受胎",68:"聖黑木耳學園援交日記",69:"我是嬌小魅魔的忠實僕人",
+            70:"夫人的回復術",71:"令人心動的小小的房東小姐",72:"後宮時間",
+            73:"我交到砲友的理由",74:"色欲INFINITE",75:"少女們的抖S茶道主義",
+            76:"夢魔小鎮柯爾內莉卡",77:"性愛成癮",78:"方便的砲友",
+            79:"與真希醬的現在",80:"自慰套教室 女子全員妊娠計畫",81:"公園男人末路",
+            82:"蔚藍檔案 觸手季",83:"卡芙卡 流萤",84:"調教 八尺",85:"2B 獸",86:"ADA 獸",
+            87:"梅麻呂3D",88:"白白的殭屍娘",89:"HOIO 馬琳船長",90:"社内SEX休憩室♥",
+            91:"Amelialtie韓系眼鏡系列",92:"尼特天使",93:"ZZZ 1打2",94:"11:T型",
+            95:"母女賭博戰敗CG",96:"男被女觸手壓",97:"ZZZ觸手百合",98:"讓女鬼懷孕",
+            99:"姪女的突出 無限中出的遊戲",100:"影 八重聖誕節",101:"re:START跟性愛泡泡浴",
+            102:"觸手寶箱怪",103:"高質量 雷神 丘丘人",104:"高質量 胡桃 丘丘人",
+            105:"高質量 僕人 芙芙 丘丘人",106:"對認真的姪子施展催眠術",107:"夜巡 女護士",
+            108:"ZZZ觸手女跟獸",109:"01-Torte愛嬢 学園魔神/機姦",110:"超★痴女系列",
+            111:"蒂法觸手 和尤菲H",112:"惡靈古堡8 八尺夫人 最後一個村民",113:"突然跑出來的貞子",
+            114:"直接跑出來的貞子",115:"流螢用腳紋開門",116:"布洛妮娅&可可利亚",
+            117:"阿蕾奇諾x琳妮特 丘丘人暴徒",118:"阿蕾奇諾女僕裝",
+            119:"到底是跟三月七做還是長夜月呢?",120:"ada被暴君壓著耖",
+            121:"里昂喝醉 ada陰肛交 內射",122:"ada 八尺夫人",123:"八尺夫人 扶他",
+            124:"ada被暴君威脅強上",125:"卡芙卡x姬子 2打1",126:"惡靈古堡 女警",
+            127:"絕對錯誤的愛戀",128:"被狗幹"
+        };
 
         function renderList() {
             const container = document.getElementById('list');
@@ -53,7 +139,7 @@
             if (checked.length === 0) return alert("請勾選影片！");
             let links = [];
             checked.forEach(cb => links.push(urls[parseInt(cb.value)]));
-            navigator.clipboard.writeText(links.join('\n')).then(() => alert('已複製 ' + links.length + ' 個連結'));
+            navigator.clipboard.writeText(links.join('\n')).then(() => alert(`已複製 ${links.length} 個連結`));
         }
 
         function clearAll() {
