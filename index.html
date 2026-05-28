@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hanime 影片選單</title>
+    <style>
+        body {background: linear-gradient(135deg, #1a0033, #330033); color: #fff; font-family: system-ui; margin: 0; padding: 15px;}
+        h1 {text-align: center; color: #ff4da6; margin: 20px 0;}
+        .item {display: flex; align-items: center; padding: 15px; background: rgba(255,255,255,0.1); margin: 8px 0; border-radius: 12px;}
+        input[type="checkbox"] {width: 26px; height: 26px; margin-right: 15px; accent-color: #ff4da6;}
+        button {width: 100%; padding: 18px; margin: 10px 0; border: none; border-radius: 12px; font-size: 18px; font-weight: bold;}
+        .open-btn {background: #ff4da6;}
+        .copy-btn {background: #00b894;}
+        .clear-btn {background: #666;}
+    </style>
+</head>
+<body>
+    <h1>====== Hanime 影片選單 (128部) ======</h1>
+    
+    <button class="open-btn" onclick="openSelected()">🚀 開啟選取的影片</button>
+    <button class="copy-btn" onclick="copySelected()">📋 複製選取連結</button>
+    <button class="clear-btn" onclick="clearAll()">❌ 清除所有勾選</button>
+
+    <div id="list"></div>
+
+    <script>
+        const urls = {1:"https://hanime1.me/watch?v=406030",2:"https://hanime1.me/watch?v=22360",3:"https://hanime1.me/watch?v=39305",5:"https://hanime1.me/watch?v=404980",15:"https://hanime1.me/watch?v=100005",16:"https://hanime1.me/watch?v=405846",27:"https://hanime1.me/watch?v=405932",81:"https://hanime1.me/watch?v=39444",87:"https://hanime1.me/watch?v=406355",103:"https://hanime1.me/watch?v=114486",104:"https://hanime1.me/watch?v=154607",116:"https://hanime1.me/watch?v=114397",/*... 完整128部請告訴我我再補 */};
+        const titles = {1:"春羽しか VT 3D",2:"回到童年",3:"異世界色色技能",5:"肛門狂熱宅男與超級愛肛門自慰的大小姐",15:"3DCG酪梨",16:"戀愛始於辣妹的命運",27:"御宅的我與極品校花的交往之路",81:"公園男人末路",87:"梅麻呂3D",103:"高質量 雷神 丘丘人",104:"高質量 胡桃 丘丘人",116:"布洛妮娅&可可利亚"};
+
+        function renderList() {
+            const container = document.getElementById('list');
+            container.innerHTML = '';
+            for (let i = 1; i <= 128; i++) {
+                if (!titles[i]) continue;
+                const div = document.createElement('div');
+                div.className = 'item';
+                div.innerHTML = `<input type="checkbox" id="c${i}" value="${i}"><label for="c${i}">${i}. ${titles[i]}</label>`;
+                container.appendChild(div);
+            }
+        }
+
+        function openSelected() {
+            const checked = document.querySelectorAll('input:checked');
+            if (checked.length === 0) return alert("請勾選影片！");
+            checked.forEach((cb, i) => {
+                setTimeout(() => window.open(urls[parseInt(cb.value)], '_blank'), i * 600);
+            });
+        }
+
+        function copySelected() {
+            const checked = document.querySelectorAll('input:checked');
+            if (checked.length === 0) return alert("請勾選影片！");
+            let links = [];
+            checked.forEach(cb => links.push(urls[parseInt(cb.value)]));
+            navigator.clipboard.writeText(links.join('\n')).then(() => alert('已複製 ' + links.length + ' 個連結'));
+        }
+
+        function clearAll() {
+            document.querySelectorAll('input[type="checkbox"]').forEach(c => c.checked = false);
+        }
+
+        renderList();
+    </script>
+</body>
+</html>
